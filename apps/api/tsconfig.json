@@ -1,0 +1,15 @@
+{
+  "extends": "@github-search/typescript-config/node.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "types": ["node"],
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "@use-cases/*": ["./src/use-cases/*"],
+      "@rest-controllers/*": ["./src/controllers/rest/*"],
+      "@server/*": ["./src/server/*"]
+    }
+  }
+}
