@@ -1,0 +1,52 @@
+{
+  "name": "@github-search/www",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm with-env next build",
+    "bundle-analyzer": "cross-env ANALYZE=true pnpm run build",
+    "check:lint": "next lint",
+    "check:types": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules .turbo .content-collections test-results playwright-report",
+    "dev": "pnpm with-env next dev --turbopack -p 3000",
+    "fix:lint": "eslint --fix .",
+    "start": "pnpm with-env next start -p 3000",
+    "test:e2e": "cross-env NODE_ENV=test pnpm with-env playwright test",
+    "test:e2e:inspector": "cross-env NODE_ENV=test pnpm with-env playwright test $1 --debug",
+    "test:e2e:ui": "cross-env NODE_ENV=test pnpm with-env playwright test --ui",
+    "with-env": "dotenv -e ../../.env.local --"
+  },
+  "lint-staged": {
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
+  },
+  "dependencies": {
+    "@github-search/env": "workspace:*",
+    "@github-search/utils": "workspace:*",
+    "@next/third-parties": "^15.4.4",
+    "@radix-ui/react-tooltip": "^1.2.7",
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-query-devtools": "^5.83.0",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
+    "consola": "^3.4.2",
+    "next": "15.4.4",
+    "nuqs": "^2.4.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "sonner": "^2.0.6"
+  },
+  "devDependencies": {
+    "@github-search/eslint-config": "workspace:*",
+    "@github-search/typescript-config": "workspace:*",
+    "@next/bundle-analyzer": "^15.4.4",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "dotenv-cli": "9.0.0",
+    "next-themes": "^0.4.6",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
+  }
+}

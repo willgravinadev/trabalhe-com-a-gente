@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["./src/utils/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@public/*": ["./public/*"]
+    },
+    "plugins": [{ "name": "next" }]
+  },
+  "exclude": ["node_modules"],
+  "extends": "@github-search/typescript-config/nextjs.json",
+  "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx", "**/*.mts", "next-env.d.ts", ".next/types/**/*.ts"]
+}
