@@ -41,18 +41,16 @@
   "useGitignore": true,
   "version": "0.2",
   "words": [
-    "Aplicação",
-    "Autenticação",
-    "Geral",
-    "nossa",
-    "Português",
-    "próprios",
-    "Repositórios",
     "rslib",
     "sonarjs",
-    "usuário",
+    "willgravinadev",
+    "Português",
+    "Aplicação",
     "Usuários",
-    "Visão",
-    "willgravinadev"
+    "Autenticação",
+    "Repositórios",
+    "próprios",
+    "nossa",
+    "usuário"
   ]
 }
