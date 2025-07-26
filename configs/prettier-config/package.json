@@ -1,0 +1,40 @@
+{
+  "name": "@github-search/prettier-config",
+  "version": "0.0.18",
+  "description": "The prettier config",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rslib build",
+    "check:lint": "eslint . --max-warnings 0",
+    "check:types": "tsc --noEmit",
+    "clean": "rm -rf .turbo dist node_modules build",
+    "dev": "rslib build --watch",
+    "fix:lint": "eslint --fix ."
+  },
+  "lint-staged": {
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
+  },
+  "devDependencies": {
+    "@github-search/eslint-config": "workspace:*",
+    "@github-search/typescript-config": "workspace:*",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "2.5.19",
+    "prettier-plugin-prisma": "^5.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.14"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
