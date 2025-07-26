@@ -3,14 +3,24 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "turbo run build",
+    "build:apps": "turbo build --filter=./apps/*",
+    "build:configs": "turbo build --filter=./configs/*",
+    "build:packages": "turbo build --filter=./packages/*",
     "check": "pnpm check:spelling && pnpm check:format && pnpm check:lint && pnpm check:types",
     "check:format": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
     "check:lint": "turbo run check:lint",
     "check:spelling": "cspell .",
     "check:types": "turbo run check:types",
+    "clean": "turbo clean && rm -rf .turbo coverage",
     "cm": "cross-env NODE_OPTIONS='--experimental-transform-types --disable-warning ExperimentalWarning' czg",
+    "dev": "turbo run dev",
+    "dev:apps": "turbo run dev --filter=./apps/*",
+    "dev:packages": "turbo run dev --filter=./packages/*",
     "fix:format": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
-    "fix:lint": "turbo run fix:lint"
+    "fix:lint": "turbo run fix:lint",
+    "preinstall": "npx --yes only-allow pnpm",
+    "prepare": "husky && pnpm build:configs && pnpm build:packages"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
