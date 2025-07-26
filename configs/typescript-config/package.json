@@ -1,0 +1,23 @@
+{
+  "name": "@github-search/typescript-config",
+  "version": "0.0.14",
+  "type": "module",
+  "files": [
+    "angular.json",
+    "base.json",
+    "nextjs.json",
+    "node.json",
+    "react-library.json",
+    "vite-react.json"
+  ],
+  "lint-staged": {
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
+  },
+  "devDependencies": {
+    "next": "^15.4.3",
+    "typescript": "5.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

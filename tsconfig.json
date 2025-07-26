@@ -1,0 +1,5 @@
+{
+  "exclude": ["apps/**", "packages/**", "configs/**"],
+  "extends": "@github-search/typescript-config/base.json",
+  "include": ["**/*.js", "**/*.ts"]
+}
