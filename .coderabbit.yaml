@@ -1,0 +1,454 @@
+language: pt-BR
+
+early_access: true
+
+reviews:
+  auto_title_instructions: 'Analyze code changes and provide a concise summary focusing on main modifications, potential impacts, and concerns that need attention.'
+  profile: 'assertive'
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  commit_status: true
+  suggested_reviewers: true
+  assess_linked_issues: true
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: true
+    base_branches:
+      - 'master'
+      - 'develop'
+
+  poem: true
+  collapse_walkthrough: true
+  sequence_diagrams: true
+  changed_files_summary: true
+
+  path_filters:
+    - '!**/*.{svg,png,jpg,jpeg,gif,ico,webp,pdf,mp4,mov,avi}'
+
+    - '!**/{dist,build,coverage,node_modules,.turbo,.next}/**'
+    - '!**/*.lock'
+    - '!**/pnpm-lock.yaml'
+    - '!**/yarn.lock'
+    - '!**/package-lock.json'
+
+    - '!**/{logs,temp,.cache,.swc,.vercel}/**'
+    - '!**/*.generated.*'
+    - '!**/.env.local'
+    - '!**/.env.production'
+
+    - '!packages/db/prisma/migrations/**'
+    - '!**/prisma/migrations/**'
+    - '!**/*.sqlite'
+    - '!**/*.db'
+
+  tools:
+    eslint:
+      enabled: true
+    markdownlint:
+      enabled: true
+    actionlint:
+      enabled: true
+    checkov:
+      enabled: true
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+    gitleaks:
+      enabled: true
+    hadolint:
+      enabled: true
+    prismaLint:
+      enabled: true
+    oxc:
+      enabled: true
+    shellcheck:
+      enabled: true
+    yamllint:
+      enabled: true
+  related_issues: true
+  related_prs: true
+
+  path_instructions:
+    - path: '**/*.ts'
+      instructions: |
+        Review checklist for Angular/NestJS/Fastify/Vite React:
+        1. Review Tone
+           - Be specific: Reference the exact line, file, or code pattern.
+           - Be constructive: Suggest improvements, don't just point out problems.
+           - Explain the why: Provide justifications or links to documentation/standards.
+           - Be concise but complete: Avoid vague comments like "fix this".
+           - Use examples: Show how to improve, not just what's wrong.
+           - Be respectful and professional.
+
+        2. Angular Patterns
+           - Use proper component lifecycle hooks
+           - Implement OnInit, OnDestroy when appropriate
+           - Use reactive forms over template-driven forms
+           - Proper dependency injection patterns
+           - Component communication via services or Input/Output
+           - Use Angular CLI conventions
+
+        3. NestJS Patterns
+           - Use appropriate decorators (@Controller, @Injectable, @Module)
+           - Implement proper exception handling with HttpException
+           - Use DTOs for request/response validation
+           - Implement guards, interceptors, and pipes appropriately
+           - Follow modular architecture patterns
+
+        4. Fastify Patterns
+           - Use proper route registration
+           - Implement schema validation
+           - Use appropriate hooks (preHandler, onRequest, etc.)
+           - Handle errors with proper status codes
+           - Optimize for performance with Fastify features
+
+        5. Performance & Security
+           - Avoid blocking operations
+           - Use proper async/await patterns
+           - Implement input validation
+           - Follow security best practices
+
+    - path: '**/*.component.ts'
+      instructions: |
+        Review checklist for Angular Components:
+        1. Component Structure
+           - Use OnPush change detection when possible
+           - Implement proper lifecycle hooks
+           - Use reactive forms for complex forms
+           - Proper component communication patterns
+           - Follow Angular style guide naming conventions
+
+        2. Performance
+           - Use trackBy functions in *ngFor
+           - Lazy load modules when appropriate
+           - Avoid function calls in templates
+           - Use OnPush change detection strategy
+           - Implement proper unsubscription patterns
+
+        3. TypeScript
+           - Use strict typing for inputs and outputs
+           - Define interfaces for component data
+           - Use proper decorators (@Input, @Output, @ViewChild)
+
+    - path: '**/*.service.ts'
+      instructions: |
+        Review checklist for Angular/NestJS Services:
+        1. Service Patterns
+           - Use proper dependency injection
+           - Implement singleton pattern when appropriate
+           - Handle HTTP errors properly
+           - Use observables for async operations
+           - Follow single responsibility principle
+
+        2. Error Handling
+           - Implement proper error catching
+           - Use custom error types
+           - Log errors appropriately
+           - Return meaningful error messages
+
+        3. Performance
+           - Use proper caching strategies
+           - Avoid memory leaks
+           - Optimize HTTP requests
+           - Use interceptors when appropriate
+
+    - path: '**/src/**/*.tsx'
+      instructions: |
+        Review checklist for Vite React Components:
+        1. Component Structure
+           - Use functional components with hooks
+           - Implement proper prop types with TypeScript
+           - Use forwardRef when appropriate
+           - Follow React best practices for composition
+
+        2. Performance
+           - Use React.memo for expensive components
+           - Implement proper useCallback and useMemo
+           - Avoid unnecessary re-renders
+           - Use lazy loading for large components
+
+        3. Hooks Usage
+           - Follow rules of hooks
+           - Use custom hooks for reusable logic
+           - Proper cleanup in useEffect
+           - Use appropriate dependency arrays
+
+        4. Vite Optimization
+           - Use dynamic imports for code splitting
+           - Optimize bundle size
+           - Leverage Vite's fast refresh
+           - Use environment variables properly
+
+    - path: '**/*.route.ts'
+      instructions: |
+        Review checklist for Fastify Routes:
+        1. Route Structure
+           - Use proper HTTP methods
+           - Implement schema validation
+           - Handle errors appropriately
+           - Use proper status codes
+
+        2. Performance
+           - Optimize route handlers
+           - Use appropriate middleware
+           - Implement caching when needed
+           - Avoid blocking operations
+
+        3. Security
+           - Validate all inputs
+           - Implement rate limiting
+           - Use HTTPS in production
+           - Sanitize responses
+
+    - path: '**/*.controller.ts'
+      instructions: |
+        Review checklist for NestJS Controllers:
+        1. Controller Structure
+           - Use appropriate decorators
+           - Implement proper DTOs
+           - Handle exceptions properly
+           - Follow REST conventions
+
+        2. Validation
+           - Use class-validator for DTOs
+           - Implement proper input validation
+           - Handle validation errors
+           - Use pipes for transformation
+
+        3. Documentation
+           - Use Swagger decorators
+           - Document all endpoints
+           - Provide example responses
+           - Include error responses
+
+    - path: '**/*.ts'
+      instructions: |
+        Review checklist for TypeScript:
+        1. Review Tone
+           - Be specific: Reference the exact line, file, or code pattern.
+           - Be constructive: Suggest improvements, don't just point out problems.
+           - Explain the why: Provide justifications or links to documentation/standards.
+           - Be concise but complete: Avoid vague comments like "fix this".
+           - Use examples: Show how to improve, not just what's wrong.
+           - Be respectful and professional.
+           - Example of good comment: Consider using `Array.prototype.map` here instead of for-loop for better readability. See [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
+           - Example of bad comment: This is wrong. Fix it.
+
+        2. Type Safety
+           - TypeScript strict configuration enabled
+           - Proper type and interface definitions
+           - Avoid 'any' types unless justified
+           - Correct use of generics
+           - Type exports and imports
+           - Avoid circular dependencies in monorepo
+
+        3. Code Quality
+           - Clean code principles
+           - SOLID principles
+           - Proper error handling
+           - Effective use of TypeScript features
+           - Code duplication checks
+           - Respect package boundaries in monorepo
+
+        4. Testing
+           - Unit test coverage (prefer colocated tests in __tests__ folders)
+           - Type testing
+           - Error case handling
+           - Edge case coverage
+           - Integration points
+           - Use Vitest for fast and isolated tests
+           - Ensure tests are deterministic
+
+        5. Documentation
+           - JSDoc for public APIs
+           - Clear type documentation
+           - Complex logic explanation
+           - Usage examples
+           - Update history
+
+    - path: '**/*.tsx'
+      instructions: |
+        Review checklist for React TypeScript:
+        1. Component Structure
+           - Proper component typing
+           - Custom hooks follow naming conventions
+           - Props interface documented
+           - Component composition
+           - State management patterns
+
+        2. Performance
+           - Proper use of memo
+           - useCallback/useMemo optimization
+           - Lazy loading when appropriate
+           - Bundle size impact
+           - Rendering optimization
+
+        3. State Management
+           - Proper state typing
+           - Context API usage
+           - Redux/Zustand patterns if applicable
+           - State update efficiency
+           - Side effects handling
+
+        4. Accessibility
+           - ARIA attributes
+           - Keyboard navigation
+           - Screen reader compatibility
+           - Color contrast
+           - Focus management
+
+                  5. Modern Framework Integration
+           - Angular: Use observables and reactive patterns
+           - NestJS: Implement proper dependency injection
+           - Fastify: Use schema validation and plugins
+           - Vite React: Optimize for build performance
+
+    - path: '**/*.prisma'
+      instructions: |
+        Review checklist for Prisma with PostgreSQL:
+        1. Schema Design
+           - Proper relationships (explicit @relation)
+           - Index optimization (@@index, @@unique)
+           - Appropriate field types for PostgreSQL
+           - Naming conventions (snake_case for DB, camelCase for models)
+           - Adequate constraints (required, optional, default)
+
+        2. PostgreSQL Specific
+           - Use appropriate PostgreSQL types (UUID, JSONB, etc.)
+           - Composite indexes when necessary
+           - Consider query performance
+           - Full-text search when appropriate
+           - PostgreSQL enums when applicable
+
+        3. Performance
+           - Avoid N+1 queries
+           - Adequate indexing
+           - Relation loading strategy
+           - Query optimization
+           - Database impact
+
+        4. Data Integrity
+           - Adequate constraints (unique, foreign keys)
+           - Cascade rules (onDelete, onUpdate)
+           - Validation rules
+           - Default values
+           - Error handling
+
+        5. Migrations
+           - Clear migration strategy
+           - Rollback plan
+           - Backup considerations
+           - Zero-downtime deployments
+
+    - path: '**/package.json'
+      instructions: |
+        Review checklist for package.json:
+        1. Dependencies
+           - Proper versioning
+           - Security vulnerabilities
+           - Duplicate dependencies
+           - Peer dependency conflicts
+           - Use workspace protocol for internal packages
+
+        2. Scripts
+           - Build process
+           - Test coverage
+           - Linting and formatting
+           - Development workflow
+           - Use turbo run when appropriate
+
+        3. Framework Specific
+           - Angular: Proper build configurations and scripts
+           - NestJS: Development and production environments
+           - Fastify: Plugin configuration and deployment
+           - Vite React: Build optimization and development setup
+
+        4. Review Tone
+           - Be specific and constructive
+           - Provide justifications
+           - Suggest improvements with examples
+
+    - path: '**/.env*'
+      instructions: |
+        Review checklist for environment files:
+        1. Security
+           - No secrets committed
+           - Well-named environment variables
+           - Separation between environments (dev, staging, prod)
+
+        2. Database
+           - Adequate DATABASE_URL for PostgreSQL
+           - Connection pooling configured
+           - SSL settings for production
+
+        3. Framework Variables
+           - Angular: Environment-specific configurations
+           - NestJS: Server-side environment variables
+           - Fastify: Plugin and database configurations
+           - Vite React: VITE_ prefixed public variables
+
+        4. Documentation
+           - Updated .env.example
+           - Explanatory comments when necessary
+
+    - path: '**/*.{json,yml,yaml}'
+      instructions: |
+        Review checklist for configuration files:
+        1. Validation
+           - Schema compliance
+           - Required fields
+           - Type correctness
+
+        2. Security
+           - No sensitive data
+           - Use of environment variables
+           - Access controls
+
+        3. Framework Specific Configurations
+           - Angular: angular.json and workspace configurations
+           - NestJS: nest-cli.json and module configurations
+           - Fastify: Plugin and route configurations
+           - Vite React: vite.config.ts and build optimizations
+
+        4. Maintenance
+           - Clear documentation
+           - Consistent formatting
+           - Version control
+
+    - path: '**/*.test.{ts,tsx,js}'
+      instructions: |
+        Review checklist for tests:
+        1. Test Quality
+           - Use Vitest for new tests
+           - Isolated and deterministic tests
+           - Mocking for external dependencies
+           - Test success and failure cases
+           - Descriptive names
+
+        2. Framework Testing
+           - Angular: Component testing with TestBed
+           - NestJS: Unit and integration testing
+           - Fastify: Route and plugin testing
+           - Vite React: Component and hook testing
+
+        3. Component Testing
+           - Test user interactions
+           - Accessibility testing
+           - Props validation
+
+        4. Coverage
+           - All critical paths covered
+           - No skipped/disabled tests in main branches
+
+        5. Performance
+           - Tests run quickly
+           - Avoid global state pollution
+
+knowledge_base:
+  opt_out: true
+  learnings:
+    scope: 'auto'
+  pull_requests:
+    scope: 'auto'

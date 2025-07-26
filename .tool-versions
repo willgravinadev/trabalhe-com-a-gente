@@ -1,0 +1,2 @@
+# When you change this node version, you need to change the .nvmrc file too
+nodejs 22.17.1
