@@ -14,7 +14,7 @@
     "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
   },
   "devDependencies": {
-    "next": "^15.4.3",
+    "next": "^15.4.4",
     "typescript": "5.8.3"
   },
   "publishConfig": {
