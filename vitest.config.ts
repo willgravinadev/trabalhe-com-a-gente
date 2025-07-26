@@ -3,6 +3,7 @@ import { coverageConfigDefaults, defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     projects: ['apps/*', 'packages/*', 'configs/*'],
+    passWithNoTests: true,
     coverage: {
       reporter: ['lcov', 'html'],
       all: true,
