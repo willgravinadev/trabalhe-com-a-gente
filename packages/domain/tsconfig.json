@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "exclude": ["node_modules", "dist"],
+  "extends": "@github-search/typescript-config/base.json",
+  "include": ["**/*.ts", "**/*.mts", "**/*.js", "**/*.mjs"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@errors/*": ["src/errors/*"],
+      "@models/*": ["src/models/*"],
+      "@value-objects/*": ["src/value-objects/*"],
+      "@shared/*": ["src/shared/*"],
+      "@contracts/*": ["src/contracts/*"]
+    }
+  }
+}
