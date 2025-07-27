@@ -70,7 +70,8 @@ export class SearchGithubRepositoriesUseCase extends UseCase<
     const paginationResult = Pagination.create({
       totalItems: totalRepositoriesCount,
       selectedPage: selectedPageValidated,
-      itemsPerPage: itemsPerPageValidated
+      itemsPerPage: itemsPerPageValidated,
+      maxItemsAvailable: 1000
     })
     if (paginationResult.isFailure()) return failure(paginationResult.value)
     const { paginationCreated } = paginationResult.value
