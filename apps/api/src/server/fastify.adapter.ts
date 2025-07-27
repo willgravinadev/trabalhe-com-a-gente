@@ -35,7 +35,7 @@ async function adaptRequest(request: FastifyRequest): Promise<HttpRequest> {
   }
 }
 
-async function adaptResponse(reply: FastifyReply, result: HttpResponse<unknown>): Promise<void> {
+async function adaptResponse(reply: FastifyReply, result: HttpResponse): Promise<void> {
   const { statusCode, data, headers } = result
 
   // Set any custom headers if provided
