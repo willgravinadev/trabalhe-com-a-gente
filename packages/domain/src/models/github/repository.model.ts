@@ -4,12 +4,17 @@ import { type GithubRepositoryOwner } from '@models/github/repository-owner.mode
 import { type DateTime } from '@value-objects/date-time.value-object'
 
 export type GithubRepository = {
-  externalID: string
-  name: string
-  fullName: string
-  externalURL: URL
   createdAt: DateTime
-  starsCount: number
+  description: string
+  externalID: string
+  externalURL: URL
   forksCount: number
+  fullName: string
+  language: string | null
+  name: string
+  openIssuesCount: number
   owner: GithubRepositoryOwner
+  sshURL: string
+  starsCount: number
+  topics: string[]
 }
