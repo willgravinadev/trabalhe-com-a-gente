@@ -21,6 +21,7 @@ export namespace SearchGithubRepositoriesUseCaseDTO {
     query: string
     selectedPage: number
     repositoriesPerPage: number
+    sortBy: 'best_match' | 'most_stars' | 'most_forks' | 'recently_updated' | null
   }>
 
   export type ResultFailure = Readonly<
@@ -62,7 +63,8 @@ export class SearchGithubRepositoriesUseCase extends UseCase<
     const searchResult = await this.githubProvider.searchRepositories({
       searchQuery: queryValidated,
       selectedPage: selectedPageValidated,
-      itemsPerPage: itemsPerPageValidated
+      itemsPerPage: itemsPerPageValidated,
+      sortBy: parameters.sortBy
     })
     if (searchResult.isFailure()) return failure(searchResult.value)
     const { repositories, totalRepositoriesCount } = searchResult.value
