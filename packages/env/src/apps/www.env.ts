@@ -11,10 +11,12 @@ export const wwwENV = createEnv({
     GOOGLE_ANALYTICS_ID: z.string().optional()
   },
   client: {
-    NEXT_PUBLIC_SITE_URL: z.string().optional()
+    NEXT_PUBLIC_SITE_URL: z.string().optional(),
+    NEXT_PUBLIC_API_URL: z.string().default('http://localhost:2222')
   },
   experimental__runtimeEnv: {
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
   },
 
   emptyStringAsUndefined: true
