@@ -35,7 +35,7 @@ export class Pagination {
   }
 
   public static validateItemsPerPage(itemsPerPage: number): Either<InvalidItemsPerPageError, { itemsPerPageValidated: number }> {
-    if (itemsPerPage < 1 || !Number.isInteger(itemsPerPage)) {
+    if (itemsPerPage < 1 || itemsPerPage > 100 || !Number.isInteger(itemsPerPage)) {
       return failure(new InvalidItemsPerPageError({ itemsPerPage }))
     }
     return success({ itemsPerPageValidated: itemsPerPage })
@@ -52,8 +52,8 @@ export class Pagination {
     totalItems: number
     selectedPage: number
     itemsPerPage: number
+    maxItemsAvailable: number | null
   }): Either<InvalidTotalItemsError | InvalidSelectedPageError | InvalidItemsPerPageError, { paginationCreated: Pagination }> {
-    console.log(parameters)
     const resultValidateTotalItems = this.validateTotalItems(parameters.totalItems)
     if (resultValidateTotalItems.isFailure()) return failure(resultValidateTotalItems.value)
     const { totalItemsValidated } = resultValidateTotalItems.value
@@ -66,7 +66,10 @@ export class Pagination {
     if (resultValidateItemsPerPage.isFailure()) return failure(resultValidateItemsPerPage.value)
     const { itemsPerPageValidated } = resultValidateItemsPerPage.value
 
-    const totalPages = Math.ceil(totalItemsValidated / itemsPerPageValidated)
+    const totalItemsAvailable =
+      parameters.maxItemsAvailable === null ? totalItemsValidated : Math.min(totalItemsValidated, parameters.maxItemsAvailable)
+
+    const totalPages = Math.ceil(totalItemsAvailable / itemsPerPageValidated)
     const hasNextPage = selectedPageValidated < totalPages
     const hasPreviousPage = selectedPageValidated > 1
 
