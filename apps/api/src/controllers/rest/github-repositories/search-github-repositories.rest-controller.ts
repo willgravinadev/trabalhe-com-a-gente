@@ -1,5 +1,3 @@
-import type { SearchGithubRepositoriesUseCaseDTO } from '@use-cases/github-repositories/search-github-repositories.use-case'
-
 import {
   type HttpRequest,
   type HttpResponseSuccess,
@@ -10,6 +8,7 @@ import {
   type UseCase
 } from '@github-search/domain'
 import { type Either, failure, success } from '@github-search/utils'
+import { type SearchGithubRepositoriesUseCaseDTO } from '@use-cases/github-repositories/search-github-repositories.use-case'
 
 export namespace SearchGithubRepositoriesRestControllerDTO {
   export type Body = Readonly<undefined>
@@ -79,19 +78,20 @@ export class SearchGithubRepositoriesRestController extends RestController<
       repositoriesPerPage: request.query.repositories_per_page
     })
     if (searchGithubRepositoriesResult.isFailure()) return failure(searchGithubRepositoriesResult.value)
+    const { repositories, pagination } = searchGithubRepositoriesResult.value
 
     return success({
       status: StatusSuccess.DONE,
       success: {
         pagination: {
-          total_items: searchGithubRepositoriesResult.value.pagination.totalItems,
-          total_pages: searchGithubRepositoriesResult.value.pagination.totalPages,
-          current_page: searchGithubRepositoriesResult.value.pagination.currentPage,
-          items_per_page: searchGithubRepositoriesResult.value.pagination.itemsPerPage,
-          has_next_page: searchGithubRepositoriesResult.value.pagination.hasNextPage,
-          has_previous_page: searchGithubRepositoriesResult.value.pagination.hasPreviousPage
+          total_items: pagination.totalItems,
+          total_pages: pagination.totalPages,
+          current_page: pagination.currentPage,
+          items_per_page: pagination.itemsPerPage,
+          has_next_page: pagination.hasNextPage,
+          has_previous_page: pagination.hasPreviousPage
         },
-        repositories: searchGithubRepositoriesResult.value.repositories.map((repository) => ({
+        repositories: repositories.map((repository) => ({
           external_id: repository.externalID,
           name: repository.name,
           full_name: repository.fullName,
