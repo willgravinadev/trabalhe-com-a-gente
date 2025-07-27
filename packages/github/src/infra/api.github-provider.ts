@@ -71,7 +71,6 @@ export class APIGithubProvider implements ISearchRepositoriesGithubProvider {
         totalRepositoriesCount: parsedResponse.total_count
       })
     } catch (error) {
-      console.log({ error })
       const providerError = new ProviderError({
         error,
         provider: {
