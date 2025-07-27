@@ -16,11 +16,21 @@ export class APIGithubProvider implements ISearchRepositoriesGithubProvider {
 
   public async searchRepositories(parameters: SearchRepositoriesGithubProviderDTO.Parameters): SearchRepositoriesGithubProviderDTO.Result {
     try {
+      const sortBy = (() => {
+        if (parameters.sortBy === 'best_match') return ''
+        if (parameters.sortBy === 'most_stars') return 'stars'
+        if (parameters.sortBy === 'most_forks') return 'forks'
+        if (parameters.sortBy === 'recently_updated') return 'updated'
+        return ''
+      })()
+
       const response = await axios.get('https://api.github.com/search/repositories', {
         params: {
           q: parameters.searchQuery,
           page: parameters.selectedPage,
-          per_page: parameters.itemsPerPage
+          per_page: parameters.itemsPerPage,
+          order: 'desc',
+          sort: sortBy
         }
       })
 
@@ -33,6 +43,11 @@ export class APIGithubProvider implements ISearchRepositoriesGithubProvider {
             name: z.string(),
             full_name: z.string(),
             html_url: z.string(),
+            description: z.string().nullable(),
+            language: z.string().nullable(),
+            open_issues_count: z.number(),
+            ssh_url: z.string(),
+            topics: z.array(z.string()),
             created_at: z.string(),
             stargazers_count: z.number(),
             forks_count: z.number(),
@@ -58,6 +73,11 @@ export class APIGithubProvider implements ISearchRepositoriesGithubProvider {
           createdAt: new DateTime({
             date: new Date(item.created_at)
           }),
+          description: item.description ?? '',
+          language: item.language,
+          openIssuesCount: item.open_issues_count,
+          sshURL: item.ssh_url,
+          topics: item.topics,
           starsCount: item.stargazers_count,
           forksCount: item.forks_count,
           owner: {
