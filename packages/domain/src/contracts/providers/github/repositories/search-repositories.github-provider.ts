@@ -10,6 +10,7 @@ export namespace SearchRepositoriesGithubProviderDTO {
     searchQuery: string
     selectedPage: number
     itemsPerPage: number
+    sortBy: 'best_match' | 'most_stars' | 'most_forks' | 'recently_updated' | null
   }>
 
   export type ResultFailure = Readonly<ProviderError | GithubRateLimitError | GithubAuthenticationError | GithubInvalidRequestError>
