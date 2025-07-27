@@ -17,7 +17,8 @@ export function searchGithubRepositoriesRoute(fastify: FastifyTypedInstance) {
         querystring: z.object({
           query: z.string().describe('Search query'),
           selected_page: z.string().describe('Selected page').transform(Number).default(1).optional(),
-          repositories_per_page: z.string().describe('Items per page').transform(Number).default(22).optional()
+          repositories_per_page: z.string().describe('Items per page').transform(Number).default(22).optional(),
+          sort_by: z.enum(['best_match', 'most_stars', 'most_forks', 'recently_updated']).describe('Sort by').default('best_match').optional()
         }),
         operationId: 'searchGithubRepositories',
         response: {
@@ -25,6 +26,14 @@ export function searchGithubRepositoriesRoute(fastify: FastifyTypedInstance) {
             .object({
               status: z.string(),
               success: z.object({
+                pagination: z.object({
+                  total_items: z.number(),
+                  total_pages: z.number(),
+                  current_page: z.number(),
+                  items_per_page: z.number(),
+                  has_next_page: z.boolean(),
+                  has_previous_page: z.boolean()
+                }),
                 repositories: z.array(
                   z.object({
                     external_id: z.string(),
@@ -34,6 +43,11 @@ export function searchGithubRepositoriesRoute(fastify: FastifyTypedInstance) {
                     created_at: z.string(),
                     stars_count: z.number(),
                     forks_count: z.number(),
+                    description: z.string(),
+                    language: z.string().nullable(),
+                    ssh_url: z.string(),
+                    open_issues_count: z.number(),
+                    topics: z.array(z.string()),
                     owner: z.object({
                       external_id: z.string(),
                       username: z.string(),
@@ -42,15 +56,7 @@ export function searchGithubRepositoriesRoute(fastify: FastifyTypedInstance) {
                       external_profile_url: z.string()
                     })
                   })
-                ),
-                pagination: z.object({
-                  total_items: z.number(),
-                  total_pages: z.number(),
-                  current_page: z.number(),
-                  items_per_page: z.number(),
-                  has_next_page: z.boolean(),
-                  has_previous_page: z.boolean()
-                })
+                )
               })
             })
             .describe('Success'),
