@@ -4,6 +4,6 @@ import { githubRepositoriesRoutes } from './github-repositories/_github-reposito
 import { healthCheckRoute } from './health-check.route'
 
 export function fastifyRoutes(fastify: FastifyTypedInstance) {
-  healthCheckRoute(fastify)
-  githubRepositoriesRoutes(fastify)
+  fastify.register(healthCheckRoute)
+  fastify.register(githubRepositoriesRoutes)
 }
