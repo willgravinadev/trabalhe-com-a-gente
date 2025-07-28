@@ -5,17 +5,35 @@ const loggerProvider = makeLoggerProvider()
 
 const shutdown = async (server: FastifyFramework): Promise<never> => {
   loggerProvider.sendLogInfo({ message: 'Starting server shutdown...' })
-  await server.app.close()
-  // await Database.getInstance().prisma.$disconnect()
-  loggerProvider.sendLogInfo({ message: 'Shutdown completed. Bye 👋' })
-  throw new Error('Server shutdown requested')
+
+  const forceExitTimeout = setTimeout(() => {
+    loggerProvider.sendLogError({
+      message: 'Graceful shutdown timeout reached, forcing exit',
+      value: 'Timeout exceeded'
+    })
+    // eslint-disable-next-line unicorn/no-process-exit -- force exit after timeout
+    process.exit(1)
+  }, 10_000)
+
+  try {
+    await server.app.close()
+    clearTimeout(forceExitTimeout)
+    loggerProvider.sendLogInfo({ message: 'Shutdown completed. Bye 👋' })
+    // eslint-disable-next-line unicorn/no-process-exit -- this is the entry point of the server
+    process.exit(0)
+  } catch (error: unknown) {
+    clearTimeout(forceExitTimeout)
+    loggerProvider.sendLogError({
+      message: 'Error during shutdown',
+      value: error
+    })
+    // eslint-disable-next-line unicorn/no-process-exit -- exit with error code
+    process.exit(1)
+  }
 }
 
 const start = async () => {
   try {
-    // const database = Database.getInstance()
-    // await database.connect()
-
     const server = new FastifyFramework()
     await server.execute()
 
