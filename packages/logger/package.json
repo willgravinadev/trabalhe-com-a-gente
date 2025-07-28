@@ -1,0 +1,42 @@
+{
+  "name": "@github-search/logger",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rslib build",
+    "check:lint": "eslint . --max-warnings 0",
+    "check:types": "tsc --noEmit",
+    "clean": "rm -rf .turbo dist",
+    "dev": "rslib build --watch",
+    "fix:lint": "eslint --fix ."
+  },
+  "lint-staged": {
+    "*.{cjs,mjs,js,jsx,cts,mts,ts,tsx,json}": "eslint --fix"
+  },
+  "dependencies": {
+    "@github-search/domain": "workspace:*",
+    "@github-search/utils": "workspace:*",
+    "pino": "^9.7.0",
+    "pino-pretty": "13.0.0"
+  },
+  "devDependencies": {
+    "@github-search/eslint-config": "workspace:*",
+    "@github-search/typescript-config": "workspace:*",
+    "@types/node": "^24.0.15",
+    "typescript": "^5.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
