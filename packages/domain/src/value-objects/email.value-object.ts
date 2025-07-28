@@ -12,8 +12,17 @@ export class Email {
   }
 
   public static getDomain(parameters: { email: Email }): Either<InvalidEmailError, { domain: string }> {
+    const atSymbolCount = (parameters.email.value.match(/@/g) ?? []).length
+
+    if (atSymbolCount !== 1) {
+      return failure(new InvalidEmailError({ email: parameters.email.value }))
+    }
+
     const [, domain] = parameters.email.value.split('@')
-    if (!domain || domain.trim() === '') return failure(new InvalidEmailError({ email: parameters.email.value }))
+    if (!domain || domain.trim() === '') {
+      return failure(new InvalidEmailError({ email: parameters.email.value }))
+    }
+
     return success({ domain })
   }
 
