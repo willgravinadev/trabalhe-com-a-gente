@@ -42,7 +42,7 @@ export function RepositoriesList(
   if (props.error) {
     return (
       <div className='text-destructive flex w-full flex-col items-center justify-center py-12'>
-        <div className='text-center'>
+        <div className='text-center' role='alert' aria-live='polite'>
           <p className='mb-2 text-lg font-semibold'>Erro ao carregar repositórios</p>
           <p className='text-sm'>{props.error.message}</p>
         </div>
