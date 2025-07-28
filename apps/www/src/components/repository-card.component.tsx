@@ -23,10 +23,12 @@ export function RepositoryCard(props: Readonly<{ repository: GithubRepository }>
               width={32}
               height={32}
             />
-            <span className='text-primary group-hover:text-accent text-base font-semibold transition-colors'>{props.repository.fullName}</span>
+            <span className='text-primary group-hover:text-accent text-balance text-base font-semibold transition-colors'>
+              {props.repository.fullName}
+            </span>
           </div>
           {props.repository.language && (
-            <span className='text-muted-foreground border-border group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground rounded-md border px-1 py-0.5 text-center text-xs'>
+            <span className='text-muted-foreground border-border group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground w-fit rounded-md border px-2 py-0.5 text-center text-xs'>
               {props.repository.language}
             </span>
           )}
