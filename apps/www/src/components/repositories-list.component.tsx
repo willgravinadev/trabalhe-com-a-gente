@@ -1,9 +1,8 @@
 'use client'
 
+import { Pagination } from '@components/pagination.component'
+import { RepositoryCard } from '@components/repository-card.component'
 import { type GitHubRepositoriesPagination, type GithubRepository } from '@http/github-repositories/search-github-repositories'
-import { Pagination } from 'src/app/(home)/_components/pagination'
-
-import { RepositoryCard } from './repository-card.component'
 
 export function RepositoriesList(
   props: Readonly<{

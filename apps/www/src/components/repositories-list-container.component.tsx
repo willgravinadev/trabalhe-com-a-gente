@@ -1,19 +1,17 @@
 'use client'
 
+import { RepositoriesList } from '@components/repositories-list.component'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@components/shadcn-ui/form'
 import { Input } from '@components/shadcn-ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@components/shadcn-ui/select'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useSearchGithubRepositories } from '@http/github-repositories/search-github-repositories'
 import { useQueryState } from 'nuqs'
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { PiMagnifyingGlass } from 'react-icons/pi'
 import { toast } from 'sonner'
 import { z } from 'zod'
-
-import { useSearchGithubRepositories } from '../../../http/github-repositories/search-github-repositories'
-
-import { RepositoriesList } from './repositories-list.component'
 
 const SORT_OPTIONS = ['best_match', 'most_stars', 'most_forks', 'recently_updated'] as const
 const REPOSITORIES_PER_PAGE_OPTIONS = [10, 25, 50, 100] as const
