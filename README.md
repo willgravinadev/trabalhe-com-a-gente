@@ -77,8 +77,8 @@ Aplicação para buscar e explorar repositórios do GitHub, construída com uma 
    ```
 
 5. **Acesse**:
-   [frontend](http://localhost:3000)
-   [swagger](http://localhost:2222/documentation)
+   - [Frontend](http://localhost:3000)
+   - [Swagger](http://localhost:2222/documentation)
 
 ## 🧪 Testes
 
