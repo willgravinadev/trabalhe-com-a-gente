@@ -18,7 +18,6 @@ Aplicação para buscar e explorar repositórios do GitHub, construída com uma 
   - React 19
   - TailwindCSS
   - Shadcn UI
-  - React Hook Form
   - Zod
   - Tanstack Query (antigo React Query)
   - React Hook Form
