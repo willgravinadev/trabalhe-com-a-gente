@@ -1,5 +1,3 @@
-/* eslint-disable eslint-comments/disable-enable-pair -- this is a test file */
-/* eslint-disable @typescript-eslint/unbound-method -- this is a test file */
 import {
   DateTime,
   type GithubRepository,
@@ -18,7 +16,6 @@ import { mock, type MockProxy } from 'vitest-mock-extended'
 
 import { SearchGithubRepositoriesRestController, type SearchGithubRepositoriesRestControllerDTO } from '../search-github-repositories.rest-controller'
 
-// Test class to access protected method
 class TestableSearchGithubRepositoriesRestController extends SearchGithubRepositoriesRestController {
   public async performOperationPublic(
     request: SearchGithubRepositoriesRestControllerDTO.Parameters
