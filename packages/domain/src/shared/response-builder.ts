@@ -38,7 +38,7 @@ export class ResponseBuilder implements IResponseBuilder {
 
     const responseHeaders = this.mergeHeaders({ additionalHeaders: headers })
     const statusCode = this.statusMapper.mapToHttpStatusCode({ status: error.status })
-    const errorData = this.includeTimestamp ? ({ ...error, [this.timestampKey]: new Date().toISOString() } as TError) : error
+    const errorData = this.includeTimestamp ? Object.assign({}, error, { [this.timestampKey]: new Date().toISOString() }) : error
     return {
       statusCode,
       data: errorData,
