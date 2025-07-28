@@ -65,7 +65,7 @@ export function RepositoriesList(
     <div className='flex w-full flex-col gap-6'>
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
         {props.repositories.map((repository) => (
-          <RepositoryCard key={repository.externalID} repository={repository} />
+          <RepositoryCard key={`${repository.externalID}-${repository.name}`} repository={repository} />
         ))}
       </div>
 
