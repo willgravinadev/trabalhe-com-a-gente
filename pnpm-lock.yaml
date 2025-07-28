@@ -183,9 +183,6 @@ importers:
       '@github-search/utils':
         specifier: workspace:*
         version: link:../../packages/utils
-      '@heroicons/react':
-        specifier: ^2.2.0
-        version: 2.2.0(react@19.1.0)
       '@hookform/resolvers':
         specifier: ^5.2.0
         version: 5.2.0(react-hook-form@7.61.1(react@19.1.0))
@@ -1360,11 +1357,6 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
-
-  '@heroicons/react@2.2.0':
-    resolution: {integrity: sha512-LMcepvRaS9LYHJGsF0zzmgKCUim/X3N/DQKc4jepAXJ7l8QxJ1PmxJzqplF2Z3FE4PqBAIGyJAQ/w4B5dsqbtQ==}
-    peerDependencies:
-      react: '>= 16 || ^19.0.0-rc'
 
   '@hookform/resolvers@5.2.0':
     resolution: {integrity: sha512-3YI+VqxJQH6ryRWG+j3k+M19Wf37LeSKJDg6Vdjq6makLOqZGYn77iTaYLMLpVi/uHc1N6OTCmcxJwhOQV979g==}
@@ -6358,10 +6350,6 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
 
   '@floating-ui/utils@0.2.10': {}
-
-  '@heroicons/react@2.2.0(react@19.1.0)':
-    dependencies:
-      react: 19.1.0
 
   '@hookform/resolvers@5.2.0(react-hook-form@7.61.1(react@19.1.0))':
     dependencies:
