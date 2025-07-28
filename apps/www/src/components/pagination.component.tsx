@@ -2,7 +2,7 @@
 
 import { Button } from '@components/shadcn-ui/button'
 import { cn } from '@github-search/utils'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 interface PaginationProps {
   pagination: {
