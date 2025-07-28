@@ -24,6 +24,7 @@
     "fastify": "^5.4.0",
     "fastify-type-provider-zod": "^5.0.2",
     "swagger-themes": "^1.4.3",
+    "vitest-mock-extended": "^3.1.0",
     "zod": "^4.0.10"
   },
   "devDependencies": {
