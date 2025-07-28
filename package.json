@@ -12,7 +12,7 @@
     "check:lint": "turbo check:lint",
     "check:spelling": "cspell .",
     "check:types": "turbo check:types",
-    "clean": "turbo clean && rm -rf .turbo coverage",
+    "clean": "turbo clean && rm -rf .turbo coverage node_modules",
     "cm": "cross-env NODE_OPTIONS='--experimental-transform-types --disable-warning ExperimentalWarning' czg",
     "dev": "turbo dev",
     "dev:apps": "turbo dev --filter=./apps/*",
