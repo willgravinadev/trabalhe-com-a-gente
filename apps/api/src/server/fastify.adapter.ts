@@ -5,7 +5,6 @@ import { type FastifyReply, type FastifyRequest } from 'fastify'
 export function fastifyRouteAdapter<TRequest, TResponse>(controller: IController<TRequest, TResponse>) {
   return async (request: FastifyRequest, reply: FastifyReply): Promise<void> => {
     try {
-      console.log(request.query)
       const httpRequest = await adaptRequest(request)
       const result = await controller.handle(httpRequest as never)
       await adaptResponse(reply, result)
